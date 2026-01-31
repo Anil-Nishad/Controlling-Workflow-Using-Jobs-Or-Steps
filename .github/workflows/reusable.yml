@@ -7,6 +7,10 @@ on:
         required: false
         default: 'dist'
         type: string
+    outputs:
+      deploy-status:
+        description: 'Status of the deployment'
+        value: ${{ jobs.deploy.outputs.outcome }}
     secrets:
       Deploy_Key:
         description: 'Secrets to use in the workflow'
@@ -14,6 +18,8 @@ on:
 
 jobs: 
     deploy:
+        outputs:
+          outcome: ${{ steps.deploy-step.outputs.deploy-status }}
         runs-on: ubuntu-latest
         steps:
           - name: Get code
@@ -26,3 +32,8 @@ jobs:
             run: |
              echo "Deploying the website..."
              echo "Using secret Deploy_Key: ${{ secrets.Deploy_Key }} and vars: ${{ vars.MYAPPNAME}}"
+          - name: Set deploy status
+            id: deploy-step
+            run: |
+                echo "Deployment completed successfully."
+                echo "::set-output name=deploy-status::success"
