@@ -2,7 +2,7 @@ name: Continue on Error Workflow
 on:
   push:
     branches:
-      - main
+      - main-continue-on-error-flow
 jobs:
   lint:
     runs-on: ubuntu-latest
