@@ -34,4 +34,4 @@ jobs:
              echo "Using secret Deploy_Key: ${{ secrets.Deploy_Key }} and vars: ${{ vars.MYAPPNAME}}"
           - name: Set deploy status
             id: deploy-step
-            run: echo "::set-output name=deploy-status::success"
+            run: echo "deploy-status=success" >> $GITHUB_OUTPUT
