@@ -7,6 +7,11 @@ on:
         required: false
         default: 'dist'
         type: string
+    secrets:
+      Deploy_Key:
+        description: 'Secrets to use in the workflow'
+        required: true
+
 jobs: 
     deploy:
         runs-on: ubuntu-latest
@@ -18,4 +23,6 @@ jobs:
           - name: Output contents
             run: ls
           - name: Output Information
-            run:  echo "Deploying the website..."
+            run: |
+             echo "Deploying the website..."
+             echo "Using secret Deploy_Key: ${{ secrets.Deploy_Key }} and vars: ${{ vars.MYAPPNAME}}"
