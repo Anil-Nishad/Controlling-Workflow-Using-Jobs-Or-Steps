@@ -8,7 +8,7 @@ on:
         default: 'dist'
         type: string
     outputs:
-      deploy-status:
+      deploy-output:
         description: 'Status of the deployment'
         value: ${{ jobs.deploy.outputs.outcome }}
     secrets:
@@ -34,6 +34,4 @@ jobs:
              echo "Using secret Deploy_Key: ${{ secrets.Deploy_Key }} and vars: ${{ vars.MYAPPNAME}}"
           - name: Set deploy status
             id: deploy-step
-            run: |
-                echo "Deployment completed successfully."
-                echo "::set-output name=deploy-status::success"
+            run: echo "::set-output name=deploy-status::success"
