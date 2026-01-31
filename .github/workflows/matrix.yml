@@ -2,7 +2,7 @@ name: Matrix Workflow
 on:
   push:
     branches:
-      - main
+      - main-matrix
 jobs:
     build:
         continue-on-error: true # Allow the job to continue even if it fails for some matrix combinations
